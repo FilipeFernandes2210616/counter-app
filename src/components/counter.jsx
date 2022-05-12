@@ -6,7 +6,7 @@ class Counter extends Component {
       <div>
         <div className="row">
           <div className="">
-            
+            <h1>Counter-app</h1>
             <span style={{ fontSize: 24 }} className={this.getBadgeClasses()}>
               {this.formatCount()}
             </span>
