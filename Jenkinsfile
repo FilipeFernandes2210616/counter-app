@@ -34,9 +34,11 @@ pipeline{
         }
         stage('Perform manual testing') {
             steps {
-                echo 'Performing manual testing '
+                timeout(activity: true, time: 5) {
+                    input 'Proceed to production?'
+                }
             }
-            }
+        }
         stage('Release to production') {
             steps {
                 echo 'Releasing to production'
