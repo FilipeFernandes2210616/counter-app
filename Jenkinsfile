@@ -16,19 +16,26 @@ pipeline{
                     sshPublisherDesc(
                     configName: 'staging',
                     transfers: [
-                    sshTransfer(
-                    cleanRemote: false,
-                    excludes: '',
-                    execCommand: 'echo "Replace me by your build/install scripts"',
-                    execTimeout: 120000,
-                    flatten: false,
-                    makeEmptyDirs: false,
-                    noDefaultExcludes: false,
-                    patternSeparator: '[, ]+',
-                    remoteDirectory: '',
-                    remoteDirectorySDF: false,
-                    removePrefix: '',
-                    sourceFiles: '**/*')],
+                        sshTransfer(
+                        cleanRemote: false,
+                        excludes: '',
+                        execCommand: '
+                        cd app
+                        npm i
+                        npm run build
+                        PORT=8080 npm run start
+                        sudo service start nginx
+                        ',
+                        execTimeout: 120000,
+                        flatten: false,
+                        makeEmptyDirs: false,
+                        noDefaultExcludes: false,
+                        patternSeparator: '[, ]+',
+                        remoteDirectory: '',
+                        remoteDirectorySDF: false,
+                        removePrefix: '',
+                        sourceFiles: 'app/*')
+                    ],
                     usePromotionTimestamp: false,
                     useWorkspaceInPromotion: false,
                     verbose: true)]
@@ -37,12 +44,13 @@ pipeline{
         }
         stage('Run automated tests') {
             steps {
+                sh 'cd tests'
                 sh 'npm prune'
                 sh 'npm cache clean --force'
                 sh 'npm i'
                 sh 'npm install --save-dev mochawesome mochawesome-merge mochawesome-report-generator'
                 sh 'rm -f mochawesome.json'
-                sh 'npx cypress run --config baseUrl="http://34.140.29.128" --browser ${BROWSER} --spec ${SPEC} --reporter mochawesome'
+                sh 'npx cypress run --config baseUrl="http://34.88.243.24" --browser ${BROWSER} --spec ${SPEC} --reporter mochawesome'
                 sh 'npx mochawesome-merge cypress/results/*.json -o mochawesome-report/mochawesome.json'
                 sh 'npx marge mochawesome-report/mochawesome.json'
             }
