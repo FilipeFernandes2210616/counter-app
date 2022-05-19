@@ -34,7 +34,7 @@ pipeline{
                         remoteDirectory: '',
                         remoteDirectorySDF: false,
                         removePrefix: '',
-                        sourceFiles: 'app/*')
+                        sourceFiles: 'app/**')
                     ],
                     usePromotionTimestamp: false,
                     useWorkspaceInPromotion: false,
