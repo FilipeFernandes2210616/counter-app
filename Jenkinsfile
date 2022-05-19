@@ -19,13 +19,13 @@ pipeline{
                         sshTransfer(
                         cleanRemote: false,
                         excludes: '',
-                        execCommand: '
+                        execCommand: '''
                         cd app
                         npm i
                         npm run build
                         PORT=8080 npm run start
                         sudo service start nginx
-                        ',
+                        ''',
                         execTimeout: 120000,
                         flatten: false,
                         makeEmptyDirs: false,
@@ -44,15 +44,16 @@ pipeline{
         }
         stage('Run automated tests') {
             steps {
-                sh 'cd tests'
-                sh 'npm prune'
-                sh 'npm cache clean --force'
-                sh 'npm i'
-                sh 'npm install --save-dev mochawesome mochawesome-merge mochawesome-report-generator'
-                sh 'rm -f mochawesome.json'
-                sh 'npx cypress run --config baseUrl="http://34.88.243.24" --browser ${BROWSER} --spec ${SPEC} --reporter mochawesome'
-                sh 'npx mochawesome-merge cypress/results/*.json -o mochawesome-report/mochawesome.json'
-                sh 'npx marge mochawesome-report/mochawesome.json'
+                dir (tests){
+                    sh 'npm prune'
+                    sh 'npm cache clean --force'
+                    sh 'npm i'
+                    sh 'npm install --save-dev mochawesome mochawesome-merge mochawesome-report-generator'
+                    sh 'rm -f mochawesome.json'
+                    sh 'npx cypress run --config baseUrl="http://34.88.243.24" --browser ${BROWSER} --spec ${SPEC} --reporter mochawesome'
+                    sh 'npx mochawesome-merge cypress/results/*.json -o mochawesome-report/mochawesome.json'
+                    sh 'npx marge mochawesome-report/mochawesome.json'
+                }
             }
         }
         stage('Perform manual testing') {
