@@ -1,6 +1,6 @@
 # dependencies
 app/node_modules
-#tests/node_modules
+tests/node_modules
 app/.pnp
 .pnp.js
 
