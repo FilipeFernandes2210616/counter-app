@@ -44,7 +44,7 @@ pipeline{
         }
         stage('Run automated tests') {
             steps {
-                    sh 'cp tests'
+                    sh 'cd tests'
                     sh 'npm prune'
                     sh 'npm cache clean --force'
                     sh 'npm i'
