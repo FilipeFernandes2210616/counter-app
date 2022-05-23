@@ -45,7 +45,7 @@ pipeline{
         stage('Run automated tests') {
             steps {
                     dir('/var/lib/jenkins/workspace/counter-app/tests'){
-                    sh 'npm prune'
+                    sh 'sudo npm prune'
                     sh 'npm cache clean --force'
                     sh 'npm i'
                     sh 'npm install --save-dev mochawesome mochawesome-merge mochawesome-report-generator'

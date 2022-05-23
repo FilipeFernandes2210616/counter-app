@@ -3,7 +3,7 @@ describe('Remove Possible Items', () => {
     let count = 0
 
     it('Remove possible item', () => {
-        cy.visit('http://localhost:3000/')
+        cy.visit(Cypress.config().baseUrl)
         
         cy.get("button.btn.btn-danger").each(() => {
             count++

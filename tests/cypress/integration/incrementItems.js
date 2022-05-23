@@ -1,7 +1,7 @@
 describe('Increment Number of Items', () => {
 
     it('Select one button add', () => {
-        cy.visit('http://localhost:3000/')
+        cy.visit(Cypress.config().baseUrl)
 
 
         cy.get("button.btn.btn-secondary").first().click()
