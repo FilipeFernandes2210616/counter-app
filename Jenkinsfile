@@ -44,7 +44,7 @@ pipeline{
         }
         stage('Run automated tests') {
             steps {
-                    dir('/var/lib/jenkins/workspace/counter-app/test'){
+                    dir('/var/lib/jenkins/workspace/counter-app/tests'){
                     sh 'npm prune'
                     sh 'npm cache clean --force'
                     sh 'npm i'
