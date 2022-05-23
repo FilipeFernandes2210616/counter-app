@@ -45,12 +45,12 @@ pipeline{
         stage('Run automated tests') {
             steps {
                     dir('/var/lib/jenkins/workspace/counter-app/tests'){
-                    sh 'sudo npm prune'
+                    sh 'npm prune'
                     sh 'npm cache clean --force'
                     sh 'npm i'
                     sh 'npm install --save-dev mochawesome mochawesome-merge mochawesome-report-generator'
                     sh 'rm -f mochawesome.json'
-                    sh './node_modules/.bin/cypress run --config baseUrl="http://34.88.243.24" --browser ${BROWSER} --spec ${SPEC} --reporter mochawesome'
+                    sh 'npx cypress run --config baseUrl="http://34.88.243.24" --browser ${BROWSER} --spec ${SPEC} --reporter mochawesome'
                     sh 'npx mochawesome-merge cypress/results/*.json -o mochawesome-report/mochawesome.json'
                     sh 'npx marge mochawesome-report/mochawesome.json'
                 }
