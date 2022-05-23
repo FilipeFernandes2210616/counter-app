@@ -45,7 +45,7 @@ pipeline{
         stage('Run automated tests') {
             steps {
                     dir('/var/lib/jenkins/workspace/counter-app/tests'){
-                    sh 'apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb'
+                    sh 'sudo apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb'
                     sh 'npm prune'
                     sh 'npm cache clean --force'
                     sh 'npm i'
