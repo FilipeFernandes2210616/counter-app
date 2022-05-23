@@ -22,12 +22,9 @@ pipeline{
                         execCommand: '''
                         cd app
                         npm i
-                        echo 'npm run build'
                         npm run build
-                        echo 'PORT=8080 npm run start'
-                        PORT=8080 npm run start
-                        echo 'service start nginx'
-                        sudo service start nginx
+                        cd build
+                        sudo cp -R * /var/www/html/
                         ''',
                         execTimeout: 120000,
                         flatten: false,
