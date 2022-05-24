@@ -45,7 +45,6 @@ pipeline{
         stage('Run automated tests') {
             steps {
                     dir('/var/lib/jenkins/workspace/counter-app/tests'){
-                    sh 'sudo rm -rf node_modules/'
                     sh 'npm prune'
                     sh 'npm cache clean --force'
                     sh 'npm i'
