@@ -49,6 +49,7 @@ pipeline{
                     sh 'sudo rm -f mochawesome.json'
                     sh 'sudo npm install -g cypress --unsafe-perm=true --allow-root --silent'
                     sh 'sudo npx cypress run --config baseUrl="http://34.69.194.143" --browser ${BROWSER} --reporter mochawesome'
+                    
                 }
             }
         }
