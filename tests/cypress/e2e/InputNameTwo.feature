@@ -1,5 +1,5 @@
 Feature: Input name for item in shopping cart
-    //As a [] I want too [] so that I can []
+    As a user I want too input text so that I can see it in shopping cart
     Name must be set before adding item to shopping cart
     If name is not set item can not be added to shopping cart
 
