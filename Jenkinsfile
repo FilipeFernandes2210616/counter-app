@@ -47,7 +47,7 @@ pipeline{
                     dir('/var/lib/jenkins/workspace/counter-app/tests'){
                     sh 'sudo npm install -g --save-dev mochawesome mochawesome-merge mochawesome-report-generator --unsage-perm=true --allow-root --silent'
                     sh 'sudo rm -f mochawesome.json'
-                    sh 'sudo npm install -g cypress --unsafe-perm=true --allow-root --silent'
+                    sh 'sudo npm install cypress --save-dev'
                     sh 'sudo npx cypress run --config baseUrl="http://34.136.196.80" --browser ${BROWSER} --reporter mochawesome'
                     
                 }
