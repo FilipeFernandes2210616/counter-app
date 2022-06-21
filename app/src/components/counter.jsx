@@ -12,6 +12,9 @@ class Counter extends Component {
             </span>
           </div>
           <div className="">
+            <form action="">
+              <input type="text" id="fname" name="fname"></input>
+            </form>
             <button
               className="btn btn-secondary"
               onClick={() => this.props.onIncrement(this.props.counter)}
