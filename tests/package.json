@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/FilipeFernandes2210616/counter-app-cypress-test#readme",
   "devDependencies": {
-    "cypress": "^10.1.0"
+    "cypress": "^10.1.0",
+    "cypress-cucumber-preprocessor": "^4.3.1"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true
   }
 }

@@ -11,7 +11,7 @@ Scenario: Value is not number
     Given there is value in name textbox
     And I value is not number
     When I select button added
-    Then item count should not increase and warning showld appar
+    Then item count should not increase and warning should appear
 
 Scenario: Number of items is decremented
     Given there is value in textbox
